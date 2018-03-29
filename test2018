@@ -1,7 +1,8 @@
 #/bin/bash
 
 echo -e "\033[1;32mC R I E   U M   U S U A R I O"
-echo -e "\033[1;31mD I G I T E  O  N O M E  D O  U S U A R I O  Q U E  D E S E J A :" read -p " " user
+echo -e "\033[1;31mD I G I T E  O  N O M E  D O  U S U A R I O  Q U E  D E S E J A"
+read -p " " user
 useradd -M -s /bin/false $user
 sleep 2
 clear
