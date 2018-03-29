@@ -1,0 +1,14 @@
+#/bin/bash
+
+echo "Deseja criar um usuario agora ? (y/n)"
+
+read user
+
+if [ "$user" = y ]
+then
+read -p "Digite o nome para o usuario: " usuario
+read -p "Digite uma senha para o usuario $usuario: " senha
+useradd -M -s /bin/false $usuario
+coproc criarasenha {
+bash (echo $senha ; echo $senha) | passwd $usuario
+}
