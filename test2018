@@ -6,9 +6,11 @@ read user
 
 if [ "$user" = y ]
 then
-read -p "Digite o nome para o usuario: " usuario
-read -p "Digite uma senha para o usuario $usuario: " senha
-useradd -M -s /bin/false $usuario
-coproc criarasenha {
-bash (echo $senha ; echo $senha) | passwd $usuario
-}
+echo -e "\033[1;32mDigite o nome para o usuario:\033[0;37m"; read -p " " name
+echo -e "\033[1;32mSenha para o usuario $name:\033[0;37m"; read -p " " pass
+useradd -M -s /bin/false $name
+if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name > /dev/null
+then
+echo -e "\033[1;31mUsuario $name ja existe\033[0m"
+else
+( echo "$pass";echo "$pass" ) | passwd $name 2> /dev/null
