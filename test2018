@@ -4,9 +4,9 @@ echo -e "\033[1;32mCria Usuario"
 echo -e "\033[1;32mDigite o nome para o usuario"
 read -p " " name
 useradd -M -s /bin/false $name
+sleep 2
 clear
 echo -e "\033[1;32mSenha para o usuario $name "
 read -p " " pass
 if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name > /dev/null
-then
 ( echo "$pass";echo "$pass" ) | passwd $name 2> /dev/null
